@@ -218,7 +218,7 @@ ite8291r3-ctl mode --screen 1000,1000,200,300
 ```
 *Note:* You can exit by pressing `Ctrl+C` (or seding `SIGINT` to the process).
 
-*Demo*:
+*Demo (video by [VJ Loops](https://www.youtube.com/channel/UCo-cAdBNbXbWF5e_efkof7Q))*:
 
 ![screen mode demo](https://i.imgur.com/qYapxwf.gif)
 

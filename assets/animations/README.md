@@ -22,7 +22,7 @@ This animation colors the WASD keys and the arrows red. (Similar to the *Gaming 
 This animation shows the text `XMG F15`.
 
 ## sine_wave.py
-This animation generates a sine wave. You need to pipe the output of this script into `ite8291-ctl` as follows:
+This animation generates a sine wave. You need to pipe the output of this script into `ite8291r3-ctl` as follows:
 ```
 python sine_wave.py | ite8291r3-ctl anim
 ```

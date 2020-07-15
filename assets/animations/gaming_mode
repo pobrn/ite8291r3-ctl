@@ -1,0 +1,41 @@
+/*
+
+Running this animation achieves the same as (or at least something similar to)
+the "Gaming mode" in the XMG Control Center
+
+*/
+
+
+# WASD --------
+
+# w
+pos 3 3 255,0,0
+
+# a
+pos 2 2 255,0,0
+
+# s
+pos 2 3 255,0,0
+
+# d
+pos 2 4 255,0,0
+
+
+# arrows
+
+# up
+pos 1 14 255,0,0
+
+# left
+pos 0 13 255,0,0
+
+# down
+pos 0 14 255,0,0
+
+# right
+pos 0 15 255,0,0
+
+
+apply
+
+

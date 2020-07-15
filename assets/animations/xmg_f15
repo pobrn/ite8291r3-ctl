@@ -1,0 +1,347 @@
+/*
+
+show 'XMG F15'
+
+*/
+
+clear
+apply
+
+brightness 0
+
+# 'X'
+
+pos 4 2 255,0,0
+pos 3 3 255,0,0
+pos 2 4 255,0,0
+pos 1 6 255,0,0
+pos 0 7 255,0,0
+pos 0 3 255,0,0
+pos 1 4 255,0,0
+pos 3 5 255,0,0
+pos 4 5 255,0,0
+
+apply
+
+# increase brightness
+
+brightness 0
+wait 0.2
+brightness 10
+wait 0.2
+brightness 20
+wait 0.2
+brightness 30
+wait 0.2
+brightness 40
+wait 0.2
+brightness 50
+wait 0.2
+
+wait 0.5
+
+# decrease brightness
+
+brightness 50
+wait 0.2
+brightness 40
+wait 0.2
+brightness 30
+wait 0.2
+brightness 20
+wait 0.2
+brightness 10
+wait 0.2
+brightness 0
+wait 0.2
+
+
+# clear 'X'
+clear
+apply
+
+# 'M'
+
+brightness 50
+
+pos 0 7 0,255,0
+apply
+wait 0.1
+pos 1 7 0,255,0
+apply
+wait 0.1
+pos 2 7 0,255,0
+apply
+wait 0.1
+pos 3 7 0,255,0
+apply
+wait 0.1
+pos 4 7 0,255,0
+apply
+wait 0.1
+pos 3 8 0,255,0
+apply
+wait 0.1
+pos 2 9 0,255,0
+apply
+wait 0.1
+pos 3 10 0,255,0
+apply
+wait 0.1
+pos 4 10 0,255,0
+apply
+wait 0.1
+pos 3 11 0,255,0
+apply
+wait 0.1
+pos 2 11 0,255,0
+apply
+wait 0.1
+pos 1 11 0,255,0
+apply
+wait 0.1
+pos 0 11 0,255,0
+apply
+wait 0.1
+
+
+wait 0.5
+
+
+pos 0 11 0,0,0
+apply
+wait 0.1
+pos 1 11 0,0,0
+apply
+wait 0.1
+pos 2 11 0,0,0
+apply
+wait 0.1
+pos 3 11 0,0,0
+apply
+wait 0.1
+pos 4 10 0,0,0
+apply
+wait 0.1
+pos 3 10 0,0,0
+apply
+wait 0.1
+pos 2 9 0,0,0
+apply
+wait 0.1
+pos 3 8 0,0,0
+apply
+wait 0.1
+pos 4 7 0,0,0
+apply
+wait 0.1
+pos 3 7 0,0,0
+apply
+wait 0.1
+pos 2 7 0,0,0
+apply
+wait 0.1
+pos 1 7 0,0,0
+apply
+wait 0.1
+pos 0 7 0,0,0
+apply
+wait 0.1
+
+
+wait 0.5
+
+
+clear
+apply
+
+# 'G'
+
+pos 2 12 0,0,255
+apply
+wait 0.1
+pos 2 13 0,0,255
+apply
+wait 0.1
+pos 1 13 0,0,255
+apply
+wait 0.1
+pos 0 12 0,0,255
+apply
+wait 0.1
+pos 0 11 0,0,255
+apply
+wait 0.1
+pos 1 10 0,0,255
+apply
+wait 0.1
+pos 2 9 0,0,255
+apply
+wait 0.1
+pos 3 10 0,0,255
+apply
+wait 0.1
+pos 4 10 0,0,255
+apply
+wait 0.1
+pos 4 11 0,0,255
+apply
+wait 0.1
+pos 4 12 0,0,255
+apply
+wait 0.1
+
+wait 0.5
+
+brightness 50
+wait 0.2
+brightness 40
+wait 0.2
+brightness 30
+wait 0.2
+brightness 20
+wait 0.2
+brightness 10
+wait 0.2
+brightness 0
+wait 0.2
+
+
+wait 1
+
+
+clear
+apply
+
+brightness 50
+
+# '5'
+
+pos 5 15 255,28,0
+wait 0.05
+apply
+pos 5 14 255,28,0
+wait 0.05
+apply
+pos 5 13 255,28,0
+wait 0.05
+apply
+pos 5 12 255,28,0
+wait 0.05
+apply
+pos 4 12 255,28,0
+wait 0.05
+apply
+pos 3 13 255,28,0
+wait 0.05
+apply
+pos 3 14 255,28,0
+wait 0.05
+apply
+pos 3 15 255,28,0
+wait 0.05
+apply
+pos 2 15 255,28,0
+wait 0.05
+apply
+pos 1 15 255,28,0
+wait 0.05
+apply
+pos 1 14 255,28,0
+wait 0.05
+apply
+pos 1 13 255,28,0
+wait 0.05
+apply
+
+# '1'
+
+pos 3 10 0,255,255
+wait 0.05
+apply
+pos 4 10 0,255,255
+wait 0.05
+apply
+pos 5 11 0,255,255
+wait 0.05
+apply
+pos 4 11 0,255,255
+wait 0.05
+apply
+pos 3 12 0,255,255
+wait 0.05
+apply
+pos 2 12 0,255,255
+wait 0.05
+apply
+pos 1 12 0,255,255
+wait 0.05
+apply
+
+
+
+# 'F'
+
+pos 1 7 255,119,0
+wait 0.05
+apply
+pos 2 7 255,119,0
+wait 0.05
+apply
+pos 3 7 255,119,0
+wait 0.05
+apply
+pos 4 7 255,119,0
+wait 0.05
+apply
+pos 5 7 255,119,0
+wait 0.05
+apply
+pos 3 8 255,119,0
+wait 0.05
+apply
+pos 3 9 255,119,0
+wait 0.05
+apply
+pos 5 8 255,119,0
+wait 0.05
+apply
+pos 5 9 255,119,0
+wait 0.05
+apply
+
+
+wait 1
+
+
+shift 0 -1
+apply
+wait 0.5
+
+shift 0 -1
+apply
+wait 0.5
+
+shift 0 -1
+apply
+wait 0.5
+
+shift 0 -1
+apply
+wait 0.5
+
+shift 0 -1
+apply
+wait 0.5
+
+shift 0 -2
+apply
+wait 0.5
+
+
+wait 1
+
+# turn off everything at the end
+
+clear
+apply

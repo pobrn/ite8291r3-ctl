@@ -24,5 +24,5 @@ This animation shows the text `XMG F15`.
 ## sine_wave.py
 This animation generates a sine wave. You need to pipe the output of this script into `ite8291-ctl` as follows:
 ```
-python sine_wave.py | ite8291-ctl anim
+python sine_wave.py | ite8291r3-ctl anim
 ```

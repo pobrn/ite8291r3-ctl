@@ -218,6 +218,10 @@ ite8291r3-ctl mode --screen 1000,1000,200,300
 ```
 *Note:* You can exit by pressing `Ctrl+C` (or seding `SIGINT` to the process).
 
+*Demo (video by [VJ Loops](https://www.youtube.com/channel/UCo-cAdBNbXbWF5e_efkof7Q))*:
+
+![screen mode demo](https://i.imgur.com/qYapxwf.gif)
+
 ___
 ### anim
 Plays an animation from a file. The name might be a bit misleading, because this is actually the facility of the program that allows you to set the color values on a per key basis. Read the README file in `assets/animatins` to see how animations may be made. It is a bit cumbersome, I am aware, however, a better way has yet to be found. The animation may be read from the standard input, so you can programatically generate it.

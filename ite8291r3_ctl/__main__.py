@@ -80,8 +80,7 @@ def main():
 	except Exception as e:
 		print(f"failed to acquire handle for device: {e}", file=sys.stderr)
 		return 1
-	
-	
+
 	
 	def valid_rgb(x):
 		try:
@@ -156,6 +155,9 @@ def main():
 			
 		if args.reactive:
 			data["reactive"] = 1
+			
+		if args.save:
+			data["save"] = 1
 	
 		handle.set_effect(effect(**data))
 	
@@ -178,14 +180,14 @@ def main():
 			
 			handle.set_palette_color(color_idx, color)
 			
-		if args.restore_default:
+		if args.restore:
 			handle.restore_default_palette()
 		
 		if args.random:
 			from random import randint
 		
 			for i in range(7):
-				handle.set_palette_color(i, [randint(0, 255) for _ in range(3)])
+				handle.set_palette_color(i+1, [randint(0, 255) for _ in range(3)])
 	
 	
 	def handle_mode_args(args):
@@ -309,6 +311,7 @@ def main():
 	parser_effect.add_argument('-s', '--speed', type=valid_intrange(0, 10), help='Speed of the effect.')
 	parser_effect.add_argument('-b', '--brightness', type=valid_intrange(0, 50), help='Brightness of the effect.')
 	parser_effect.add_argument('-c', '--color', choices=ite8291r3.colors.keys(), help='Color of the effect.')
+	parser_effect.add_argument('--save', action='store_true', help='Instruct the controller to save the settings.')
 	parser_effect.set_defaults(func=handle_effect_args)
 	
 	group = parser_effect.add_mutually_exclusive_group()

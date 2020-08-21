@@ -56,7 +56,9 @@ The simplest way to install is to use `pip`:
 ```
 pip install ite8291r3-ctl
 ```
+
 *Note:* This will not download anything from the `assets` directory, it only installs the program. You will have to download them manually if you want to try them out.
+
 *Note:* If you want to install for all users, run `pip` as root.
 
 ## Manually
@@ -164,10 +166,15 @@ optional arguments:
                         Direction of the effect.
   -r, --reactive        Specify if you want the effect to be reactive.
 ```
+
 *Note:* If you specify `random` for color value, then all colors in the palette will be used in some fashion (depending on the effect).
+
 *Note:* Do **not** use `none` for *direction* or *color*, because nothing will show up.
+
 *Note:* Not all effects support all properties. You will get an error message if you try to use an unsupported property. See the *Effect property support matrix* section for more info.
+
 *Note:* The color names might be misleading. `red` actually refers to the first color in the palette, `orange` to the second, and so on. If you modify the palette, and then set the color for an effect, you might not get what you expect.
+
 *Note:* Enabling an effect will change the brightness. If not specified, the default value (25) will be applied.
 
 ___
@@ -200,6 +207,7 @@ ite8291r3-ctl palette --set-color 3 255,13,14
 ite8291r3-ctl palette --random
 // sets all color to something randomly generated
 ```
+
 *Note:* The index specified for `--set-color` must lie between 1 and 7 (inclusive).
 
 ___
@@ -216,6 +224,7 @@ ite8291r3-ctl mode --screen
 ite8291r3-ctl mode --screen 1000,1000,200,300
 // take screenshots of the rectangle whose top left corner is at (1000, 1000) and has a width of 200 and height of 300
 ```
+
 *Note:* You can exit by pressing `Ctrl+C` (or seding `SIGINT` to the process).
 
 *Demo (video by [VJ Loops](https://www.youtube.com/channel/UCo-cAdBNbXbWF5e_efkof7Q))*:
@@ -234,6 +243,7 @@ ite8291r3-ctl anim --file test_anim_file --loop 3
 ite8291r3-ctl anim --loop
 // read animation from the standard input and loop it indefinitely
 ```
+
 *Note:* If looping is required, then the whole file must be read into memory.
 
 ___
@@ -251,6 +261,7 @@ ite8291r3-ctl query --brightness
 ite8291r3-ctl query --state
 // prints the current state of the keyboard backlight: "on" or "off"
 ```
+
 *Note:* This information may be useful if you want to use it in a script.
 
 

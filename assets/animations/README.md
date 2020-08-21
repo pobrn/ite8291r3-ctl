@@ -9,8 +9,11 @@ Commands:
 * `shift Rdiff Cdiff` - add `Rdiff` (int) to the y-coordinate (row), and `Cdiff` to the x-coordinate (column) of every entry in the color map 
 
 *Note:* On the XMG Fusion 15, there are 16x6 actually available positions that can be colored. All animations have been created for that size.
+
 *Note:* `shift 0 -1` shifts everything to the left by one, for example.
+
 *Note:* Lines that begin with `#` are ignored. If a line starts with `/*`, then a comment block begins; if a line starts with `*/`, a comment block ends. Comment blocks may be nested. Look in the folder `assets/animations` to see more examples.
+
 *Note:* `(row 0, col 0)` is the bottom left corner.
 
 # Examples in this directory

@@ -9,7 +9,7 @@
 
 
 # Compatibility
-It has only been tested on Linux so far, but the core functionalities should work where `pyusb` is available. It has only been tried on an XMG Fusion 15 device so far, but it should work on other devices that have this particular ITE controller. So if [`aucc`](https://github.com/rodgomesc/avell-unofficial-control-center) works, this should work as well.
+It has only been tested on Linux so far, but the core functionalities should work where `pyusb` is available. It has only been tried on an XMG Fusion 15 device so far, but it should work on other devices that have this particular ITE controller. So if [`aucc`](https://github.com/rodgomesc/avell-unofficial-control-center) works, this should work as well. It has been also [reported](https://old.reddit.com/r/XMG_gg/comments/idjq6c/keyboard_backlight_xmg_neo_15_m20_linux/g2qbl02/) that it works with the `048d:6004` ITE device, however, as of yet, you need to set the `PRODUCT_ID` variable to `0x6004` in `ite8291r3_ctl/ite8291r3.py` to make it work.
 
 You can use `lsusb -d 048d:ce00` to determine if you have the suitable device. If it shows something like
 ```

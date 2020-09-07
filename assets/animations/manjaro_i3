@@ -1,0 +1,160 @@
+/*
+Coloring the Fn keys for keyboard brightness, volume, display brightness and the i3 mod keys.
+F-Keys and Fn-key white.
+All other keys in manajaro blue-green.
+
+Created for:
+- XMG Fusion 15 (Intel Whitebook QC71)
+- QWERTZ keyboard layout
+- 6 lines, 16 columns of keys
+
+*/
+
+brightness 10
+
+# i3 Mod keys ------------------
+
+# left super
+pos 0 3 255,0,0
+
+# regular function keys --------
+
+# fn-key
+pos 0 2 0,0,255
+
+# ESC until F5
+pos 5 0 255,150,100
+pos 5 1 255,150,100
+pos 5 2 255,150,100
+pos 5 3 255,150,100
+pos 5 4 255,150,100
+pos 5 5 255,150,100
+
+# other functions
+pos 5 13 255,150,100
+pos 5 14 255,150,100
+pos 5 15 255,150,100
+pos 4 15 255,150,100
+pos 3 15 255,150,100
+pos 2 15 255,150,100
+pos 1 15 255,150,100
+
+# arrow keys
+# right
+pos 0 15 255,0,0
+# left
+pos 0 13 255,0,0
+# up
+pos 1 14 255,0,0
+# down
+pos 0 14 255,0,0
+
+# special function keys --------
+
+# keyboard brightness down
+pos 5 6 50,100,255
+# keyboard brightness up
+pos 5 7 50,100,255
+
+# volume mute
+pos 5 8 255,150,100
+# volume down
+pos 5 9 255,150,100
+# volume up
+pos 5 10 255,150,100
+
+# display brightness down
+pos 5 11 50,100,255
+# display brightness up
+pos 5 12 50,100,255
+
+# all other keys ---------------
+
+# row 0 ------------
+
+# ctrl left
+pos 0 0 26,100,60
+# alt
+pos 0 4 26,100,60
+# space
+pos 0 7 26,100,60
+# alt gr
+pos 0 10 26,100,60
+# context menu
+pos 0 11 26,100,60
+# right ctrl
+pos 0 12 26,100,60
+
+# row 1 ------------
+
+pos 1 0 26,100,60
+pos 1 1 26,100,60
+pos 1 2 26,100,60
+pos 1 3 26,100,60
+pos 1 4 26,100,60
+pos 1 5 26,100,60
+pos 1 6 26,100,60
+pos 1 7 26,100,60
+pos 1 8 26,100,60
+pos 1 9 26,100,60
+pos 1 10 26,100,60
+pos 1 11 26,100,60
+pos 1 12 26,100,60
+pos 1 13 26,100,60
+
+# row 2 ------------
+
+pos 2 0 26,100,60
+pos 2 1 26,100,60
+pos 2 2 26,100,60
+pos 2 3 26,100,60
+pos 2 4 26,100,60
+pos 2 5 26,100,60
+pos 2 6 26,100,60
+pos 2 7 26,100,60
+pos 2 8 26,100,60
+pos 2 9 26,100,60
+pos 2 10 26,100,60
+pos 2 11 26,100,60
+pos 2 12 26,100,60
+pos 2 13 26,100,60
+
+# row 3 ------------
+
+pos 3 0 26,100,60
+pos 3 1 26,100,60
+pos 3 2 26,100,60
+pos 3 3 26,100,60
+pos 3 4 26,100,60
+pos 3 5 26,100,60
+pos 3 6 26,100,60
+pos 3 7 26,100,60
+pos 3 8 26,100,60
+pos 3 9 26,100,60
+pos 3 10 26,100,60
+pos 3 11 26,100,60
+pos 3 12 26,100,60
+pos 3 13 26,100,60
+pos 3 14 26,100,60
+
+# row 4 ------------
+
+pos 4 0 26,100,60
+pos 4 1 26,100,60
+pos 4 2 26,100,60
+pos 4 3 26,100,60
+pos 4 4 26,100,60
+pos 4 5 26,100,60
+pos 4 6 26,100,60
+pos 4 7 26,100,60
+pos 4 8 26,100,60
+pos 4 9 26,100,60
+pos 4 10 26,100,60
+pos 4 11 26,100,60
+pos 4 12 26,100,60
+pos 4 13 26,100,60
+pos 4 14 26,100,60
+
+apply
+
+

@@ -1,8 +1,12 @@
 /*
-
 Coloring the Fn keys for keyboard brightness, volume, display brightness and the i3 mod keys.
 F-Keys and Fn-key white.
 All other keys in manajaro blue-green.
+
+Created for:
+- XMG Fusion 15 (Intel Whitebook QC71)
+- QWERTZ keyboard layout
+- 6 lines, 16 columns of keys
 
 */
 

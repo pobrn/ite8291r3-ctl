@@ -281,11 +281,12 @@ def main():
 
 		if args.devices:
 			for dev in ite8291r3.get_all():
-				print(f"bus {dev.bus} "
+				print(f"{dev.idVendor:04x}:{dev.idProduct:04x} "
+				      f"bus {dev.bus} "
 				      f"addr {dev.address} "
 				      f"rev {dev.bcdDevice >> 8:x}.{dev.bcdDevice & 0xFF:02x} "
-				      f"product {dev.idProduct:04x}:'{dev.product}' "
-				      f"manufacturer {dev.idVendor:04x}:'{dev.manufacturer}'")
+				      f"product '{dev.product}' "
+				      f"manufacturer '{dev.manufacturer}'")
 
 	parser = argparse.ArgumentParser(description='ITE8291 (rev 0.03) RGB keyboard backlight controller driver.')
 

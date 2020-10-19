@@ -1,5 +1,5 @@
 # What is it?
-`ite8291r3-ctl` is a userspace driver for the ITE 8291 (rev 0.03) RGB keyboard backlight controller. 
+`ite8291r3-ctl` is a userspace driver for the ITE 8291 (rev 0.03) RGB keyboard backlight controller.
 
 
 # Disclaimer
@@ -9,17 +9,14 @@
 
 
 # Compatibility
-It has only been tested on Linux so far, but the core functionalities should work where `pyusb` is available. It has only been tried on an XMG Fusion 15 device so far, but it should work on other devices that have this particular ITE controller. So if [`aucc`](https://github.com/rodgomesc/avell-unofficial-control-center) works, this should work as well. It has been also [reported](https://old.reddit.com/r/XMG_gg/comments/idjq6c/keyboard_backlight_xmg_neo_15_m20_linux/g2qbl02/) that it works with the `048d:6004` ITE device, however, as of yet, you need to set the `PRODUCT_ID` variable to `0x6004` in `ite8291r3_ctl/ite8291r3.py` to make it work.
+The following devices have been reported to work:
 
-You can use `lsusb -d 048d:ce00` to determine if you have the suitable device. If it shows something like
-```
-Bus 001 Device 002: ID 048d:ce00 Integrated Technology Express, Inc. ITE Device(8291)
-```
-then you have an ITE 8291 controller, now the question is the revision number. If `lsusb -d 048d:ce00 -v | grep bcdDevice` shows
-```
-  bcdDevice            0.03
-```
-then the device is the correct revision and the program should work flawlessly.
+| idVendor | idProduct | bcdDevice |             manufacturer             |      product      |
+|----------|-----------|-----------|--------------------------------------|-------------------|
+| 048d     | 6004      | 0.03      | Integrated Technology Express, Inc.  | ITE Device(8291)  |
+| 048d     | ce00      | 0.03      | Integrated Technology Express, Inc.  | ITE Device(8291)  |
+
+If you believen your device should be supported, but it is not, please open an issue. You can run `ite8291r3-ctl query --devices` to see the supported devices found in the system. Alternatively, you can use `lsusb -d 048d:`.
 
 
 # Dependencies
@@ -94,7 +91,7 @@ SUBSYSTEMS=="usb", ATTRS{idVendor}=="048d", ATTRS{idProduct}=="ce00", GROUP="nam
 after creating the file, run `sudo udevadm control --reload`, then `sudo udevadm trigger`. Or reboot.
 
 ## Subcommands
-Use `ite8291r3-ctl -h` to get a list of subcommands. Use `ite8291r3 <subcommand> -h` to get the help for a given subcommand.
+Use `ite8291r3-ctl -h` to get a list of subcommands. Use `ite8291r3 <subcommand> -h` to get the help for a given subcommand. Use `ite8291r3-ctl --device <bus>/<addr>` to select a device to control, if the device is not specified, the first available will be used.
 ### off
 Turns off the keyboard backlight.
 
@@ -260,6 +257,9 @@ ite8291r3-ctl query --brightness
 
 ite8291r3-ctl query --state
 // prints the current state of the keyboard backlight: "on" or "off"
+
+ite8291r3-ctl query --devices
+// prints the list of supported devices found in the system
 ```
 
 *Note:* This information may be useful if you want to use it in a script.
@@ -271,7 +271,7 @@ This matrix shows which effects support which properties.
 | effect    | speed | color | direction | reactivity |
 |-----------|-------|-------|-----------|------------|
 | breathing | yes   | yes   | -         | -          |
-| wave      | yes   | -     | yes       | -          | 
+| wave      | yes   | -     | yes       | -          |
 | random    | yes   | yes   | -         | yes        |
 | rainbow   | -     | -     | -         | -          |
 | ripple    | yes   | yes   | -         | yes        |
@@ -289,4 +289,3 @@ All contribution is welcome. If you find a bug, typo, or have a feature request,
 
 # Acknowledgements
 [`aucc`](https://github.com/rodgomesc/avell-unofficial-control-center), [`ite-backlight`](https://github.com/hexagonal-sun/ite-backlight), and [*Project Starbeat*](https://github.com/kirainmoe/tongfang-hackintosh-utility) have been incredily useful in gaining insight into how this controller works, without them, this program would not have been created.
-

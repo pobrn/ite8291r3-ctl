@@ -36,10 +36,12 @@ pos 5 5 255,150,100
 pos 5 9 255,150,100
 pos 5 10 255,150,100
 
+#ENTF
+pos 5 15 255,20,147
+
 # other functions
 pos 5 13 255,150,100
 pos 5 14 255,150,100
-pos 5 15 255,150,100
 
 # arrow keys
 # right

@@ -1,5 +1,10 @@
+import sys
+
 import usb.core
 import usb.util
+
+
+DEBUG = False
 
 VENDOR_ID   = 0x048D
 PRODUCT_IDS = [0x6004, 0xCE00]
@@ -139,37 +144,48 @@ effects = {
 }
 
 class ite8291r3:
-
 	def __init__(self, channel):
 		self.channel = channel
 
 	def __send_data(self, payload):
-		#print(f"sending data ({len(payload)} bytes) {payload} to device")
+		if DEBUG:
+			print(f"sending data ({len(payload)} bytes) to device: {payload}", file=sys.stderr)
+
 		return self.channel.write(payload)
 
 	def __send_ctrl(self, *payload):
 		if len(payload) < 8:
 			payload += (0, ) * (8 - len(payload))
 
-		#print(f"sending ctrl {payload} to device")
+		if DEBUG:
+			print(f"sending ctrl device: {payload}", file=sys.stderr)
 
 		# https://github.com/libusb/hidapi/blob/533dd9229a846d6ab00c4dced1cbddf66b576258/libusb/hid.c#L1180
 		self.channel.ctrl_transfer(
-			 usb.util.build_request_type(usb.util.CTRL_OUT, usb.util.CTRL_TYPE_CLASS, usb.util.CTRL_RECIPIENT_INTERFACE), # bmRequestType
-			 0x09, # bRequest (HID set_report)
+			usb.util.build_request_type(usb.util.CTRL_OUT,
+						    usb.util.CTRL_TYPE_CLASS,
+						    usb.util.CTRL_RECIPIENT_INTERFACE), # bmRequestType
+			0x009, # bRequest (HID set_report)
 			0x300, # wValue (HID feature)
-			 0x01, # wIndex
-			 payload)
+			0x001, # wIndex
+			payload)
 
 	def __get_ctrl(self, length):
 
 		# https://github.com/libusb/hidapi/blob/533dd9229a846d6ab00c4dced1cbddf66b576258/libusb/hid.c#L1210
-		return self.channel.ctrl_transfer(
-			 usb.util.build_request_type(usb.util.CTRL_IN, usb.util.CTRL_TYPE_CLASS, usb.util.CTRL_RECIPIENT_INTERFACE), # bmRequestType
-			 0x01, # bRequest (HID get_report)
+		data = self.channel.ctrl_transfer(
+			usb.util.build_request_type(usb.util.CTRL_IN,
+						    usb.util.CTRL_TYPE_CLASS,
+						    usb.util.CTRL_RECIPIENT_INTERFACE), # bmRequestType
+			0x001, # bRequest (HID get_report)
 			0x300, # wValue (HID feature)
-			 0x01, # wIndex
-			 length)
+			0x001, # wIndex
+			length)
+
+		if DEBUG:
+			print(f"received ctrl from device: {data}", file=sys.stderr)
+
+		return data
 
 	def get_fw_version(self):
 		self.__send_ctrl(commands.GET_FW_VERSION)

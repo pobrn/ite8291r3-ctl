@@ -285,6 +285,7 @@ def main():
 
 	parser = argparse.ArgumentParser(description='ITE8291 (rev 0.03) RGB keyboard backlight controller driver.')
 
+	parser.add_argument('--debug', action='store_true', help='print traffic between the device and this program to stderr')
 	parser.add_argument('--device', type=valid_devid, help='bus/addr of the device to control.')
 
 	subparsers = parser.add_subparsers(help='Subcommands.')
@@ -346,6 +347,9 @@ def main():
 	parser_query.set_defaults(func=handle_query_args)
 
 	args = parser.parse_args()
+
+	if args.debug:
+		ite8291r3.DEBUG = True
 
 	try:
 		handle = ite8291r3.get(args.device)

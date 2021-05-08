@@ -211,11 +211,14 @@ class ite8291r3:
 	def get_brightness(self):
 		return self.get_effect()[effect_attrs.BRIGHTNESS]
 
-	def enable_user_mode(self, save=False):
-		self.set_effect( (51, 0, self.get_brightness(), 0, 0, 1 if save else 0) ) # change to user mode
+	def enable_user_mode(self, brightness=None, save=False):
+		if brightness is None:
+			brightness = self.get_brightness()
 
-	def set_color(self, color, save=False):
-		self.enable_user_mode(save)
+		self.set_effect((51, 0, brightness, 0, 0, 1 if save else 0))
+
+	def set_color(self, color, brightness=None, save=False):
+		self.enable_user_mode(brightness, save)
 
 		for row in range(NUM_ROWS):
 
@@ -228,7 +231,7 @@ class ite8291r3:
 			self.__send_data(bytearray(arr))
 
 	def set_palette_color(self, idx, color):
-		if not (1 <= idx <= 7):	
+		if not (1 <= idx <= 7):
 			raise ValueError("palette color index must be between 1 and 7 (inclusive)")
 
 		self.__send_ctrl(commands.SET_PALETTE_COLOR, 0, idx, *color)
@@ -242,8 +245,8 @@ class ite8291r3:
 		self.set_palette_color(6, (  0, 255, 255) ) # teal
 		self.set_palette_color(7, (255,   0, 255) ) # purple
 
-	def test_pattern(self, shift=0, save=False):
-		self.enable_user_mode(save)
+	def test_pattern(self, shift=0, brightness=None, save=False):
+		self.enable_user_mode(brightness, save)
 
 		c = [
 			(255, 0, 0),
@@ -262,14 +265,14 @@ class ite8291r3:
 			self.__set_row_index(row)
 			self.__send_data(bytearray(arr))
 
-	def set_key_colors(self, color_map={}, save=False, enable_user_mode=True):
+	def set_key_colors(self, color_map={}, brightness=None, save=False, enable_user_mode=True):
 		arr = [ [0] * ROW_BUFFER_LEN for _ in range(NUM_ROWS) ]
 
 		for ((row, col), color) in color_map.items():
 			arr[row][ROW_RED_OFFSET + col], arr[row][ROW_GREEN_OFFSET + col], arr[row][ROW_BLUE_OFFSET + col] = color
 
 		if enable_user_mode or save:
-			self.enable_user_mode(save)
+			self.enable_user_mode(brightness, save)
 
 		for row in range(NUM_ROWS):
 			self.__set_row_index(row)
@@ -286,8 +289,7 @@ class usb_channel:
 	def write(self, payload):
 		return self.dev.write(self.fd_out, payload)
 
-def get(loc = None):
-
+def get(loc=None):
 	if loc:
 		(bus, addr) = loc
 		dev = usb.core.find(bus=bus, address=addr)

@@ -114,19 +114,18 @@ def main():
 	def handle_brightness_args(args):
 		handle.set_brightness(args.brightness)
 
-	def handle_test_pattern_args(args):	
+	def handle_test_pattern_args(args):
 		import time
 
 		b = handle.get_brightness()
 
 		for i in range(6):
-			handle.set_brightness(50-i*9)
-			handle.test_pattern(i)
+			handle.test_pattern(i, 50 - i * 10)
 
-			if i != 5: time.sleep(2)
+			if i != 5:
+				time.sleep(2)
 
-		handle.set_key_colors()
-		handle.set_brightness(b)
+		handle.set_key_colors({}, b)
 
 	def handle_freeze_args(args):
 		handle.freeze()
@@ -159,14 +158,10 @@ def main():
 		handle.set_effect(effect(**data))
 
 	def handle_monocolor_args(args):
-
-		if args.brightness is not None:
-			handle.set_brightness(args.brightness)
-
 		if args.name:
-			handle.set_color(color_name_to_rgb[args.name])
+			handle.set_color(color_name_to_rgb[args.name], args.brightness)
 		elif args.rgb:
-			handle.set_color(args.rgb)
+			handle.set_color(args.rgb, args.brightness)
 
 	def handle_palette_args(args):
 		if args.set_color:

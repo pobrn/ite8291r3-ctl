@@ -81,11 +81,13 @@ By default you need *root* privileges if you want to use this utility. As noted 
 If you want to do that, create a file `/etc/udev/rules.d/99-ite8291.rules`:
 ```
 SUBSYSTEMS=="usb", ATTRS{idVendor}=="048d", ATTRS{idProduct}=="ce00", MODE:="0666"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="048d", ATTRS{idProduct}=="6004", MODE:="0666"
 ```
 
 or you can make it accessible only for a given group if you don't want anyone to have access to it:
 ```
 SUBSYSTEMS=="usb", ATTRS{idVendor}=="048d", ATTRS{idProduct}=="ce00", GROUP="name_of_the_group", MODE:="0660"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="048d", ATTRS{idProduct}=="6004", GROUP="name_of_the_group", MODE:="0660"
 ```
 
 after creating the file, run `sudo udevadm control --reload`, then `sudo udevadm trigger`. Or reboot.

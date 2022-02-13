@@ -7,7 +7,7 @@ import usb.util
 DEBUG = False
 
 VENDOR_ID   = 0x048D
-PRODUCT_IDS = [0x6004, 0xCE00]
+PRODUCT_IDS = [0x6004, 0x6006, 0xCE00]
 REV_NUMBER  = 0x0003 # 0.03
 
 NUM_ROWS = 6

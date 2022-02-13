@@ -14,6 +14,7 @@ The following devices have been reported to work:
 | idVendor | idProduct | bcdDevice |                vendor                |      product      |
 |----------|-----------|-----------|--------------------------------------|-------------------|
 | 048d     | 6004      | 0.03      | Integrated Technology Express, Inc.  | ITE Device(8291)  |
+| 048d     | 6006      | 0.03      | Integrated Technology Express, Inc.  | ITE Device(8291)  |
 | 048d     | ce00      | 0.03      | Integrated Technology Express, Inc.  | ITE Device(8291)  |
 
 If you believen your device should be supported, but it is not, please open an issue. You can run `ite8291r3-ctl query --devices` to see the supported devices found in the system. Alternatively, you can use `lsusb -d 048d:`.

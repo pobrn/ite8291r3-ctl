@@ -48,7 +48,7 @@ setup(
 	
 	extras_require={
 		'mode-screen': ['python-xlib', 'Pillow'],
-		'mode-picture': ['Pillow'],
+		'mode-image': ['Pillow'],
 	},
 	
 	project_urls={

@@ -28,7 +28,8 @@ If you believen your device should be supported, but it is not, please open an i
 #### for the `screen` mode
 * [`python-xlib`](https://pypi.org/project/python-xlib) Python package
 * [`Pillow`](https://pypi.org/project/Pillow) Python package
-
+#### for the `picture` mode
+* [`Pillow`](https://pypi.org/project/Pillow) Python package
 
 # Features
 ## Current
@@ -38,6 +39,7 @@ If you believen your device should be supported, but it is not, please open an i
 * Per-key RGB colors
 * Animations
 * Coloring the keyboard according to what is on screen **[exprimental, Linux+Xorg only]**
+* Coloring the keyboard according to a picture
 * Querying parts of the controller state
 
 ## TO-DO

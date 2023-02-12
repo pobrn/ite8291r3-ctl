@@ -20,6 +20,22 @@ color_name_to_rgb = {
 	"orange":  (255, 28, 0),
 }
 
+def picture_mode(handle, picture_path=None):
+	import os
+	from PIL import Image
+	if os.path.exists(picture_path) is not True:
+		return
+
+	im = Image.open(picture_path)
+	im = im.resize((16, 6), resample=Image.BOX)
+	handle.enable_user_mode()
+	color_map = {}
+
+	for row in range(6):
+		for col in range(16):
+			color_map[(row, col)] = im.getpixel((col, 5-row))
+	handle.set_key_colors(color_map, enable_user_mode=False)
+
 def screen_mode(handle, offset_x=None, offset_y=None, width=None, height=None):
 	from Xlib import display, X
 	from PIL import Image
@@ -190,6 +206,8 @@ def main():
 				screen_mode(handle, *data)
 			except KeyboardInterrupt:
 				pass
+		elif args.picture is not None:
+			picture_mode(handle, args.picture)
 
 	def handle_anim_args(args):
 		import time
@@ -332,6 +350,7 @@ def main():
 	parser_mode = subparsers.add_parser('mode', help='Enable interactive modes.')
 	group = parser_mode.add_mutually_exclusive_group()
 	group.add_argument('--screen', metavar='offset_x,offset_y,width,height', nargs='?', const='fullscreen', help='Color the keyboard according to what is on the screen in the given region.')
+	group.add_argument('--picture', metavar='picture_path', nargs='?', const='fullscreen', help='Color the keyboard according to a given picture.')
 	parser_mode.set_defaults(func=handle_mode_args)
 
 	parser_anim = subparsers.add_parser('anim', help='Play animation.')

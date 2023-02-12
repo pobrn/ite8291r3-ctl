@@ -234,7 +234,8 @@ ite8291r3-ctl mode --screen 1000,1000,200,300
 ![screen mode demo](https://i.imgur.com/qYapxwf.gif)
 
 #### image
-You also need to install `Pillow` Python packages. You can install them by installing the utility with `pip install ite8291r3_ctl[mode-image]`.
+You also need to install `Pillow` Python package. You can install them by installing the utility with `pip install ite8291r3_ctl[mode-image]`.
+
 The `image` mode takes an image, downsizes it to 16x6, and lights up the backlight LEDs according to the colors on the image.
 
 *Example:*

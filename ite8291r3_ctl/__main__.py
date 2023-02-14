@@ -20,11 +20,8 @@ color_name_to_rgb = {
 	"orange":  (255, 28, 0),
 }
 
-def image_mode(handle, image_path=None):
-	import os
+def image_mode(handle, image_path):
 	from PIL import Image
-	if os.path.exists(image_path) is not True:
-		return
 
 	im = Image.open(image_path)
 	im = im.resize((16, 6), resample=Image.BOX)
@@ -350,7 +347,7 @@ def main():
 	parser_mode = subparsers.add_parser('mode', help='Enable interactive modes.')
 	group = parser_mode.add_mutually_exclusive_group()
 	group.add_argument('--screen', metavar='offset_x,offset_y,width,height', nargs='?', const='fullscreen', help='Color the keyboard according to what is on the screen in the given region.')
-	group.add_argument('--image', metavar='image_path', nargs='?', const='fullscreen', help='Color the keyboard according to a given image.')
+	group.add_argument('--image', metavar='path', nargs='1', type=argparse.FileType('rb'), help='Color the keyboard according to a given image.')
 	parser_mode.set_defaults(func=handle_mode_args)
 
 	parser_anim = subparsers.add_parser('anim', help='Play animation.')

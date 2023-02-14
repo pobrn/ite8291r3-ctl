@@ -23,7 +23,7 @@ color_name_to_rgb = {
 def image_mode(handle, image_path):
 	from PIL import Image
 
-	im = Image.open(image_path)
+	im = Image.open(image_path[0].name)
 	im = im.resize((16, 6), resample=Image.BOX)
 	handle.enable_user_mode()
 	color_map = {}

@@ -28,7 +28,8 @@ If you believen your device should be supported, but it is not, please open an i
 #### for the `screen` mode
 * [`python-xlib`](https://pypi.org/project/python-xlib) Python package
 * [`Pillow`](https://pypi.org/project/Pillow) Python package
-
+#### for the `picture` mode
+* [`Pillow`](https://pypi.org/project/Pillow) Python package
 
 # Features
 ## Current
@@ -38,6 +39,7 @@ If you believen your device should be supported, but it is not, please open an i
 * Per-key RGB colors
 * Animations
 * Coloring the keyboard according to what is on screen **[exprimental, Linux+Xorg only]**
+* Coloring the keyboard according to a picture
 * Querying parts of the controller state
 
 ## TO-DO
@@ -210,7 +212,9 @@ ite8291r3-ctl palette --random
 
 ___
 ### mode
-**[experimental]** Enables one of the interactive modes. There is only a single mode available at the moment: `screen`, and it only works on Linux, with Xorg. You also need to install `python-xlib` and `Pillow` Python pacakges. You can install them by installing the utility with `pip install ite8291r3_ctl[mode-screen]`.
+**[experimental]** Enables one of the interactive modes.
+#### screen
+Only works on Linux, with Xorg. You also need to install `python-xlib` and `Pillow` Python pacakges. You can install them by installing the utility with `pip install ite8291r3_ctl[mode-screen]`.
 
 The `screen` mode takes a screenshot every 0.2 seconds of your screen, downsizes it to 16x6, and lights up the backlight LEDs according to the colors on the picture. [This video](https://www.youtube.com/watch?v=3VZthcTSBrI) is perfect for trying it out. The colors are not cleared after exiting, so I guess this is also a way to set the desired colors if you don't want to spend time with the more robust way described in the following section.
 
@@ -229,6 +233,15 @@ ite8291r3-ctl mode --screen 1000,1000,200,300
 
 ![screen mode demo](https://i.imgur.com/qYapxwf.gif)
 
+#### image
+You also need to install `Pillow` Python package. You can install them by installing the utility with `pip install ite8291r3_ctl[mode-image]`.
+
+The `image` mode takes an image, downsizes it to 16x6, and lights up the backlight LEDs according to the colors on the image.
+
+*Example:*
+```
+ite8291r3-ctl mode --image /path/to/the/image
+```
 ___
 ### anim
 Plays an animation from a file. The name might be a bit misleading, because this is actually the facility of the program that allows you to set the color values on a per key basis. Read the README file in `assets/animatins` to see how animations may be made. It is a bit cumbersome, I am aware, however, a better way has yet to be found. The animation may be read from the standard input, so you can programatically generate it.

@@ -347,7 +347,7 @@ def main():
 	parser_mode = subparsers.add_parser('mode', help='Enable interactive modes.')
 	group = parser_mode.add_mutually_exclusive_group()
 	group.add_argument('--screen', metavar='offset_x,offset_y,width,height', nargs='?', const='fullscreen', help='Color the keyboard according to what is on the screen in the given region.')
-	group.add_argument('--image', metavar='path', nargs='1', type=argparse.FileType('rb'), help='Color the keyboard according to a given image.')
+	group.add_argument('--image', metavar='path', nargs=1, type=argparse.FileType('rb'), help='Color the keyboard according to a given image.')
 	parser_mode.set_defaults(func=handle_mode_args)
 
 	parser_anim = subparsers.add_parser('anim', help='Play animation.')

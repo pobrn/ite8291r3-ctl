@@ -146,14 +146,15 @@ effects = {
 }
 
 class ite8291r3:
-	def __init__(self, channel):
-		self.channel = channel
+	def __init__(self, usb_dev, usb_out_descriptor):
+		self.usb_dev = usb_dev
+		self.usb_out_descriptor = usb_out_descriptor
 
 	def __send_data(self, payload):
 		if DEBUG:
 			print(f"sending data ({len(payload)} bytes) to device: {payload}", file=sys.stderr)
 
-		return self.channel.write(payload)
+		return self.usb_dev.write(self.usb_out_descriptor, payload)
 
 	def __send_ctrl(self, *payload):
 		if len(payload) < 8:
@@ -163,7 +164,7 @@ class ite8291r3:
 			print(f"sending ctrl device: {payload}", file=sys.stderr)
 
 		# https://github.com/libusb/hidapi/blob/533dd9229a846d6ab00c4dced1cbddf66b576258/libusb/hid.c#L1180
-		self.channel.ctrl_transfer(
+		self.usb_dev.ctrl_transfer(
 			usb.util.build_request_type(usb.util.CTRL_OUT,
 						    usb.util.CTRL_TYPE_CLASS,
 						    usb.util.CTRL_RECIPIENT_INTERFACE), # bmRequestType
@@ -175,7 +176,7 @@ class ite8291r3:
 	def __get_ctrl(self, length):
 
 		# https://github.com/libusb/hidapi/blob/533dd9229a846d6ab00c4dced1cbddf66b576258/libusb/hid.c#L1210
-		data = self.channel.ctrl_transfer(
+		data = self.usb_dev.ctrl_transfer(
 			usb.util.build_request_type(usb.util.CTRL_IN,
 						    usb.util.CTRL_TYPE_CLASS,
 						    usb.util.CTRL_RECIPIENT_INTERFACE), # bmRequestType
@@ -296,17 +297,6 @@ class ite8291r3:
 			self.__set_row_index(row)
 			self.__send_data(bytearray(arr[row]))
 
-class usb_channel:
-	def __init__(self, dev, fd_out):
-		self.dev = dev
-		self.fd_out = fd_out
-
-	def ctrl_transfer(self, *args, **kwargs):
-		return self.dev.ctrl_transfer(*args, **kwargs)
-
-	def write(self, payload):
-		return self.dev.write(self.fd_out, payload)
-
 def get(loc=None):
 	if loc:
 		(bus, addr) = loc
@@ -321,10 +311,12 @@ def get(loc=None):
 		dev.detach_kernel_driver(1)
 
 	cfg = dev.get_active_configuration()
+	out_descriptor = usb.util.find_descriptor(
+		cfg[(1, 0)],
+		custom_match=lambda e: usb.util.endpoint_direction(e.bEndpointAddress) == usb.util.ENDPOINT_OUT,
+	)
 
-	fd_out = usb.util.find_descriptor(cfg[(1, 0)], custom_match=lambda e: usb.util.endpoint_direction(e.bEndpointAddress) == usb.util.ENDPOINT_OUT)
-
-	return ite8291r3(usb_channel(dev, fd_out))
+	return ite8291r3(dev, out_descriptor)
 
 def get_all():
 	return usb.core.find(find_all=True,

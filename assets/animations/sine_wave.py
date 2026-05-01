@@ -1,3 +1,5 @@
+# SPDX-License-Identifier: CC0-1.0
+
 import math
 import time
 from random import randint

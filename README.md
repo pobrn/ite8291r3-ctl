@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: CC-BY-SA-4.0 -->
+
 # What is it?
 `ite8291r3-ctl` is a userspace driver for the ITE 8291 (rev 0.03) RGB keyboard backlight controller.
 

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# SPDX-License-Identifier: CC0-1.0
 
 from setuptools import setup, find_packages
 import ite8291r3_ctl

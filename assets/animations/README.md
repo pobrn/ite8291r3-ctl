@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: CC-BY-SA-4.0 -->
+
 # Animation file format
 An animation file is a plain text file, every line of which contains a single instruction. The main thing to keep in mind is the "color map", which stores *position <-> color* mappings.
 Commands:

@@ -297,7 +297,7 @@ class ite8291r3:
 			self.__set_row_index(row)
 			self.__send_data(bytearray(arr[row]))
 
-def get(loc=None):
+def get(loc):
 	if loc:
 		(bus, addr) = loc
 		dev = usb.core.find(bus=bus, address=addr)

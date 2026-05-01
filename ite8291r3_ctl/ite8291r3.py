@@ -5,9 +5,6 @@ import sys
 import usb.core
 import usb.util
 
-
-DEBUG = False
-
 VENDOR_ID   = 0x048D
 PRODUCT_IDS = [0x6004, 0x6006, 0xCE00]
 REV_NUMBER  = 0x0003 # 0.03
@@ -146,22 +143,24 @@ effects = {
 }
 
 class ite8291r3:
-	def __init__(self, usb_dev, usb_out_descriptor):
+	def __init__(self, usb_dev, usb_out_descriptor, traffic_callback):
 		self.usb_dev = usb_dev
 		self.usb_out_descriptor = usb_out_descriptor
+		self.traffic_callback = traffic_callback
+
+	def __report_traffic(self, kind, direction, data):
+		if self.traffic_callback:
+			self.traffic_callback(kind, direction, data)
 
 	def __send_data(self, payload):
-		if DEBUG:
-			print(f"sending data ({len(payload)} bytes) to device: {payload}", file=sys.stderr)
-
+		self.__report_traffic("data", "out", payload)
 		return self.usb_dev.write(self.usb_out_descriptor, payload)
 
 	def __send_ctrl(self, *payload):
 		if len(payload) < 8:
 			payload += (0, ) * (8 - len(payload))
 
-		if DEBUG:
-			print(f"sending ctrl device: {payload}", file=sys.stderr)
+		self.__report_traffic("ctrl", "out", payload)
 
 		# https://github.com/libusb/hidapi/blob/533dd9229a846d6ab00c4dced1cbddf66b576258/libusb/hid.c#L1180
 		self.usb_dev.ctrl_transfer(
@@ -185,8 +184,7 @@ class ite8291r3:
 			0x001, # wIndex
 			length)
 
-		if DEBUG:
-			print(f"received ctrl from device: {data}", file=sys.stderr)
+		self.__report_traffic("ctrl", "in", data)
 
 		return data
 
@@ -297,7 +295,7 @@ class ite8291r3:
 			self.__set_row_index(row)
 			self.__send_data(bytearray(arr[row]))
 
-def get(loc):
+def get(loc, traffic_callback):
 	if loc:
 		(bus, addr) = loc
 		dev = usb.core.find(bus=bus, address=addr)
@@ -316,7 +314,7 @@ def get(loc):
 		custom_match=lambda e: usb.util.endpoint_direction(e.bEndpointAddress) == usb.util.ENDPOINT_OUT,
 	)
 
-	return ite8291r3(dev, out_descriptor)
+	return ite8291r3(dev, out_descriptor, traffic_callback)
 
 def get_all():
 	return usb.core.find(find_all=True,

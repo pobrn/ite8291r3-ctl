@@ -350,11 +350,12 @@ def main():
 
 	args = parser.parse_args()
 
+	traffic_callback = None
 	if args.debug:
-		ite8291r3.DEBUG = True
+		traffic_callback = lambda *args: print("debug:", *args)
 
 	try:
-		handle = ite8291r3.get(args.device)
+		handle = ite8291r3.get(args.device, traffic_callback)
 	except FileNotFoundError as e:
 		print(f"device handle could not be acquired: {e}")
 		return 1

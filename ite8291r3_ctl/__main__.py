@@ -209,10 +209,10 @@ def main():
 			i = 0
 
 			# do not store lines if no looping is needed
-			if args.loop == 1:
-				line_source = filter(lambda x: x != "", map(lambda x: x.strip(), args.file))
-			else:
+			if args.loop is True or args.loop > 1:
 				line_source = list(filter(lambda x: x != "", [x.strip() for x in args.file]))
+			else:
+				line_source = filter(lambda x: x != "", map(lambda x: x.strip(), args.file))
 
 			while args.loop is True or i < args.loop:
 
